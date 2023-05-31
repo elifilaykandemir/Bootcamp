@@ -34,36 +34,36 @@ class MineSelling {
     var mineCode: String = ""
     var mineSize: Int = 0
     
-    func grainEffect() -> Float{
+    func grainEffect() -> Float {
         return (mineDict[mineCode]?.price ?? 0) - ((grainSpeciality[mineSize]?.effect ?? 0 ) * (mineDict[mineCode]?.price ?? 0))
     }
     
-    func calculateBasePrice() -> Float{
+    func calculateBasePrice() -> Float {
         return mineDict[mineCode]?.price ?? 0 * amount
     }
     
-    func cleanEffect() -> Float{
+    func cleanEffect() -> Float {
         return (mineDict[mineCode]?.price ?? 0) - ((mineDict[mineCode]?.price ?? 0) * (cleaningRatio / 100 ))
     }
     
-    func calculateKDV()-> Float{
+    func calculateKDV() -> Float {
         calculateOverallPrice() * 0.08
     }
     
-    func calculateOverallUnitPrice() ->Float{
+    func calculateOverallUnitPrice() -> Float {
         return grainEffect() - cleanEffect()
     }
     
-    func calculateOverallPrice()-> Float{
+    func calculateOverallPrice() -> Float {
         return calculateOverallUnitPrice() * amount
     }
     
-    func calculateGeneralPrice() ->Float{
+    func calculateGeneralPrice() -> Float {
         return calculateOverallPrice() + calculateKDV()
     }
 }
 
-func controlCode(_ sentence:String)-> String{
+func controlCode(_ sentence:String) -> String {
     var mineCode: String
         repeat {
             print(sentence,terminator: " ")
@@ -76,7 +76,7 @@ func controlCode(_ sentence:String)-> String{
         return mineCode
 }
 
-func readStringToConsole(_ sentence: String) ->String{
+func readStringToConsole(_ sentence: String) -> String {
     var trimmedInput:String
     var isAlpha: Bool
     var isEmpty: Bool
@@ -95,7 +95,7 @@ func readStringToConsole(_ sentence: String) ->String{
     return trimmedInput
 }
 
-func readIntegerToConsole(_ sentence:String)-> Int {
+func readIntegerToConsole(_ sentence:String) -> Int {
     
     var trimmedInput:String
     var isNumeric:Bool
@@ -114,7 +114,7 @@ func readIntegerToConsole(_ sentence:String)-> Int {
     return Int(trimmedInput) ?? 0
 }
 
-func main(){
+func main() {
     let programme = MineSelling()
     print("*** Cevher v1.0 ***\n")
     let consumerName = readStringToConsole("* Müşteri'nin\nAdı:")
